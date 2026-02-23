@@ -1,169 +1,237 @@
-1. What is Network Traffic?
 
--Network traffic is the data moving between computers in a network.
+
+## 1. What is Network Traffic?
+
+Network traffic is the data moving between computers in a network.
 
 When you:
 
---Open a website
---Download a file
---Ping another device
---Stream a video
+* Open a website
+* Download a file
+* Ping another device
+* Stream a video
 
 You are generating network traffic.
 
 In Linux, we can generate traffic manually using command-line tools. This is very useful for:
 
---Testing networks
---Learning packet capture (Wireshark, tcpdump)
---Checking firewall rules
---Simulating load
+* Testing networks
+* Learning packet capture (Wireshark, tcpdump)
+* Checking firewall rules
+* Simulating load
 
-2. Where Traffic Works in the Network
+---
 
--Traffic can be generated at different layers:
+## 2. Where Traffic Works in the Network
 
---Application Layer → HTTP, FTP, DNS
---Transport Layer → TCP, UDP
---Network Layer → ICMP (Ping)
+Traffic can be generated at different layers:
 
--Common ports:
+* Application Layer → HTTP, FTP, DNS
+* Transport Layer → TCP, UDP
+* Network Layer → ICMP (Ping)
 
---HTTP → 80
---HTTPS → 443
---DNS → 53
---FTP → 21
+Common ports:
 
-3. Basic Tools to Generate Traffic in Linux
- -Ping (ICMP Traffic)
+* HTTP → 80
+* HTTPS → 443
+* DNS → 53
+* FTP → 21
+
+---
+
+## 3. Basic Tools to Generate Traffic in Linux
+
+### Ping (ICMP Traffic)
 
 Command:
-	ping google.com
 
+```bash
+ping google.com
+
+```
 
 What it does:
 
---Sends ICMP echo requests
---Generates continuous traffic
---Tests connectivity
+* Sends ICMP echo requests
+* Generates continuous traffic
+* Tests connectivity
 
 What you see in capture:
 
---ICMP request
---ICMP reply
+* ICMP request
+* ICMP reply
 
 Stop with:
-	Ctrl + C
+`Ctrl + C`
 
--Curl (HTTP/HTTPS Traffic)
+### Curl (HTTP/HTTPS Traffic)
 
 Command:
-	curl http://example.com
+
+```bash
+curl http://example.com
+
+```
 
 What it does:
 
---Sends HTTP request
---Generates TCP traffic on port 80
+* Sends HTTP request
+* Generates TCP traffic on port 80
 
 For HTTPS:
-	curl https://google.com
+
+```bash
+curl https://google.com
+
+```
 
 What you see:
 
---DNS request
---TCP handshake
---HTTP request & response
+* DNS request
+* TCP handshake
+* HTTP request & response
 
--Wget (Download Traffic)
+### Wget (Download Traffic)
 
 Command:
-	wget http://speedtest.tele2.net/1MB.zip
+
+```bash
+wget http://speedtest.tele2.net/1MB.zip
+
+```
 
 What it does:
 
---Downloads file
---Generates large TCP traffic
+* Downloads file
+* Generates large TCP traffic
 
 Useful for:
 
---Testing bandwidth
---Observing packet flow
+* Testing bandwidth
+* Observing packet flow
 
--Netcat (TCP/UDP Traffic)
+### Netcat (TCP/UDP Traffic)
 
 Netcat is a powerful traffic generator.
 
 TCP traffic:
 Terminal 1:
-	nc -l 5000
+
+```bash
+nc -l 5000
+
+```
 
 Terminal 2:
-	nc 127.0.0.1 5000
+
+```bash
+nc 127.0.0.1 5000
+
+```
 
 Now type something → traffic is generated.
 
 UDP traffic:
-	nc -u 127.0.0.1 5000
 
--Iperf (High Traffic / Load Testing)
+```bash
+nc -u 127.0.0.1 5000
+
+```
+
+### Iperf (High Traffic / Load Testing)
 
 Install:
-	sudo apt install iperf3
+
+```bash
+sudo apt install iperf3
+
+```
 
 Server:
-	iperf3 -s
+
+```bash
+iperf3 -s
+
+```
 
 Client:
-	iperf3 -c <server-ip>
 
+```bash
+iperf3 -c <server-ip>
+
+```
 
 This generates heavy TCP traffic.
 
 You can also use UDP:
-	iperf3 -c <server-ip> -u
 
-4. Step-by-Step Example: Generate and Capture Traffic
-Step 1: Start Packet Capture
-	sudo tcpdump -i eth0
+```bash
+iperf3 -c <server-ip> -u
 
-Step 2: Generate Traffic
-	ping google.com
+```
 
-Step 3: Observe
--You will see:
+---
 
---ICMP packets
---Source IP
---Destination IP
---Sequence numbers
+## 4. Step-by-Step Example: Generate and Capture Traffic
 
-5. What You Can Observe in Traffic
+### Step 1: Start Packet Capture
+
+```bash
+sudo tcpdump -i eth0
+
+```
+
+### Step 2: Generate Traffic
+
+```bash
+ping google.com
+
+```
+
+### Step 3: Observe
+
+You will see:
+
+* ICMP packets
+* Source IP
+* Destination IP
+* Sequence numbers
+
+---
+
+## 5. What You Can Observe in Traffic
 
 When generating traffic, you can see:
 
---Source and destination IP
---Protocol (TCP, UDP, ICMP)
---Port numbers
---Packet size
---Sequence numbers
---Response time
+* Source and destination IP
+* Protocol (TCP, UDP, ICMP)
+* Port numbers
+* Packet size
+* Sequence numbers
+* Response time
 
-6. Common Traffic Types You Can Generate
+---
 
-Traffic Type		command-line		Protocol
+## 6. Common Traffic Types You Can Generate
 
-Ping				ping				ICMP
-Website				curl				TCP
-Download			wget				TCP
-Chat				nc					TCP/UDP
-Load Test			iperf3				TCP/UDP
+| Traffic Type | Command-line | Protocol |
+| --- | --- | --- |
+| Ping | `ping` | ICMP |
+| Website | `curl` | TCP |
+| Download | `wget` | TCP |
+| Chat | `nc` | TCP/UDP |
+| Load Test | `iperf3` | TCP/UDP |
 
-7. What You Will Learn
+---
+
+## 7. What You Will Learn
 
 By generating traffic in Linux CLI, you will learn:
 
---How packets travel
---How TCP handshake works
---Difference between TCP and UDP
---How ICMP works
+* How packets travel
+* How TCP handshake works
+* Difference between TCP and UDP
+* How ICMP works
 
---How to test network performance
+---
+
