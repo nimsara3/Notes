@@ -8,5 +8,5 @@ Click on a topic below to view the details.
 * [ARP Guide](note/arp.md)
 * [ICMP Guide](note/icmp.md)
 * [TCP Guide](note/tcp.md)
-* [Traffic_Generate Guide](note/Traffic_generate)
+* [Traffic_Generate Guide](note/Traffic_generate.md)
 * [Go back to top](#)
