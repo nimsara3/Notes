@@ -165,4 +165,5 @@ By generating traffic in Linux CLI, you will learn:
 --How TCP handshake works
 --Difference between TCP and UDP
 --How ICMP works
+
 --How to test network performance
